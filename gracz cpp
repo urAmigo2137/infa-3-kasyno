@@ -1,0 +1,43 @@
+#include "Gracz.h"
+#include <iostream>
+
+using namespace std;
+
+Gracz::Gracz()
+{
+    ileKart = 0;
+
+    for (int i = 0; i < 10; i++)
+        karty[i] = 0;
+}
+
+void Gracz::dobierzKarte(Karta* k)
+{
+    if (k != 0 && ileKart < 10)
+    {
+        karty[ileKart] = k;
+        ileKart++;
+    }
+}
+
+int Gracz::sumaPunktow()
+{
+    int suma = 0;
+
+    for (int i = 0; i < ileKart; i++)
+        suma += karty[i]->getWartosc();
+
+    return suma;
+}
+
+void Gracz::wypiszKarty()
+{
+    for (int i = 0; i < ileKart; i++)
+    {
+        karty[i]->wypisz();
+        cout << " ";
+
+        if (i < ileKart - 1)
+            cout << ", ";
+    }
+}
