@@ -1,0 +1,52 @@
+#include "Kasyno.h"
+#include <iostream>
+
+using namespace std;
+
+Kasyno::Kasyno()
+{
+    int nr = 0;
+
+    for (int kolor = 0; kolor < 4; kolor++)
+    {
+        for (int wartosc = 0; wartosc < 13; wartosc++)
+        {
+            talia[nr] = Karta(kolor, wartosc);
+            nr++;
+        }
+    }
+
+    nastepnaKarta = 0;
+}
+
+Karta* Kasyno::dajKarte()
+{
+    if (nastepnaKarta < 52)
+    {
+        Karta* k = &talia[nastepnaKarta];
+        nastepnaKarta++;
+        return k;
+    }
+
+    return 0;
+}
+
+void Kasyno::gra()
+{
+    for (int i = 0; i < 2; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            gracze[j].dobierzKarte(dajKarte());
+        }
+    }
+
+    for (int i = 0; i < 3; i++)
+    {
+        cout << "Gracz " << i + 1 << ": ";
+        gracze[i].wypiszKarty();
+        cout << endl;
+        cout << "Suma punktow: " << gracze[i].sumaPunktow() << endl;
+        cout << endl;
+    }
+}
