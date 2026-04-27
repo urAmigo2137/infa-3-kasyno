@@ -1,0 +1,15 @@
+#pragma once
+#include "Karta.h"
+
+class Gracz
+{
+private:
+    Karta* karty[10];
+    int ileKart;
+
+public:
+    Gracz();
+    void dobierzKarte(Karta* k);
+    int sumaPunktow();
+    void wypiszKarty();
+};
